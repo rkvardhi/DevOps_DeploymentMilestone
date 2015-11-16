@@ -52,7 +52,7 @@ function memoryLoad()
 	console.log( 'Used mem : ' + total + 'Free mem : ' + freemem);
 	var memLoad = 100*(total-freemem)/total;
 	console.log('MemLoad : ' + memLoad);
-	if (memLoad > 30) {
+	if (memLoad > 80) {
 		//TO DO : Send email and update a flag
 		// send mail with defined transport object
 		/*transporter.sendMail(mailOptions, function(error, info){
@@ -107,7 +107,7 @@ function cpuAverage()
 	//Calculate the average percentage CPU usage
 	var cpuAvg = 100*(totalDifference-idleDifference)/totalDifference;
 	console.log('CPU Average : ' + cpuAvg);
-	if (cpuAvg > 30) {
+	if (cpuAvg > 80) {
 		//TO DO : Send email and update a flag
 		
 		// send mail with defined transport object
