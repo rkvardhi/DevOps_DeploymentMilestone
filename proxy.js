@@ -22,8 +22,6 @@ client.lrange('serverqueue',0,-1, function (err, value) {
 
 client.lpush('serverqueue',string1);
 client.lpush('serverqueue',string1);
-client.lpush('serverqueue',string1);
-client.lpush('serverqueue',string1);
 client.lpush('serverqueue',string2);
 
 client.lrange('serverqueue',0,-1, function (err, value) {

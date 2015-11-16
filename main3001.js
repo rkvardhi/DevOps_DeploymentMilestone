@@ -19,9 +19,6 @@ var client = redis.createClient(6379, '52.10.15.127', {})
    console.log('Example app listening at http://%s:%s', host, port)
  })
 
-
-  ;
-
 //Sending Mail
 
 var nodemailer = require('nodemailer');
@@ -127,10 +124,6 @@ function cpuAverage()
 	return cpuAvg;
 }
 
-
-///////////////
-//// Broadcast heartbeat over websockets
-//////////////
 setInterval( function () 
 {
 	cpuAverage();
@@ -156,60 +149,8 @@ app.use(function(req, res, next)
 	next(); // Passing the request to the next handler in the stack.
 });
 
-client.set("key", "value");
-client.get("key", function(err,value){ console.log(value)});
-
- app.post('/upload',[ multer({ dest: './uploads/'}), function(req, res){
-
-    console.log(req.body) // form fields
-    console.log(req.files) // form files
-
-    if( req.files.image )
-    {
- 	   fs.readFile( req.files.image.path, function (err, data) {
- 	  		if (err) throw err;
- 	  		var img = new Buffer(data).toString('base64');
-			client.lpush('imgqueue', img);
- 	  		console.log("Image uploaded successfully");
- 		});
- 	}
-
-    res.status(204).end()
- }]);
-
- app.get('/meow', function(req, res) {
- 	{
-		console.log("Meow invoked");
- 		res.writeHead(200, {'content-type':'text/html'});
-
-		//Remove the recently pushed element from the imgqueue
-		client.rpop('imgqueue', function(err, imagedata){
-			res.write("<h1>\n<img src='data:my_pic.jpg;base64,"+imagedata+"'/>");
-			res.end();
-			});
-		
- 	}
- })
-
-
 app.get('/', function(req, res) {
-  res.send('From Canary instance: Hello world')
-})
-
-
-app.get('/set', function(req, res) {
-  client.set("newkey1","This message will self destruct in 10 seconds")
-  client.expire("newkey1",10)
-  res.send("From port 3001\nnewkey1")
-})
-
-app.get('/get', function(req, res) {
-  client.get("newkey1",function(err,value){res.send('From port 3001\n'+value)});
-})
-
-
-app.get('/recent', function(req, res) {
-  client.lrange("queue",0,4, function(err,value){res.send('From port 3001\n'+value)});
+  res.send('<h2>From Canary instance: Hello world!!!</h2>')
 })
 
 client.set('homepageflag',true);
@@ -217,19 +158,22 @@ client.set('homepageflag',true);
 app.get('/homepage', function(req, res) {
   client.get('homepageflag', function(err, value) {
 		if (value == 'true') {
-			res.send('This is homepage');
+			res.send('<h2>This is homepage.</h2>');
 		}
 		else {
-			res.send('This feature has been turned off');
+			res.send('<h2>This feature has been turned off.</h2>');
 		}
 	})
 })
 
-app.get('/setflag', function(req, res) {
-  client.set('homepageflag', true)
+app.get('/enableflag', function(req, res) {
+  client.set('homepageflag', true);
+  res.send('<h2>Feature flag for homepage has been enabled.</h2>');
 })
+
 
 app.get('/disableflag', function(req, res) {
   client.set('homepageflag', false)
+  res.send('<h2>Feature flag for homepage has been disable.</h2>');
 })
 

@@ -125,9 +125,6 @@ function cpuAverage()
 }
 
 
-///////////////
-//// Broadcast heartbeat over websockets
-//////////////
 setInterval( function () 
 {
 	cpuAverage();
@@ -137,8 +134,8 @@ setInterval( function ()
 
 app.get('/monitor',function (req,res) {
 	res.writeHead(200, {'content-type':'text/html'});
-	res.write("<h1>CPU Average : "+cpuAverage()+"</h1><br/>");
-	res.write("<h1>Memory Load : "+memoryLoad()+"</h1>");
+	res.write("<h2>CPU Average : "+cpuAverage()+"</h2><br/>");
+	res.write("<h2>Memory Load : "+memoryLoad()+"</h2>");
 
 })
 
@@ -159,7 +156,7 @@ client.get("key", function(err,value){ console.log(value)});
 
  
 app.get('/', function(req, res) {
-  res.send('From port 3000\nhello world')
+  res.send('<h2>From production instance: Hello world!!!</h2>')
 })
 
 
@@ -178,21 +175,23 @@ client.set('homepageflag',true);
 app.get('/homepage', function(req, res) {
   client.get('homepageflag', function(err, value) {
 		if (value == 'true') {
-			res.send('This is homepage');
+			res.send('<h2>This is homepage.</h2>');
 		}
 		else {
-			res.send('This feature has been turned off');
+			res.send('<h2>This feature has been turned off.</h2>');
 		}
 	})
 })
 
-app.get('/setflag', function(req, res) {
-  client.set('homepageflag', true)
+app.get('/enableflag', function(req, res) {
+  client.set('homepageflag', true);
+  res.send('<h2>Feature flag for homepage has been enabled.</h2>');
 })
 
 
 app.get('/disableflag', function(req, res) {
   client.set('homepageflag', false)
+  res.send('<h2>Feature flag for homepage has been disable.</h2>');
 })
 
 
