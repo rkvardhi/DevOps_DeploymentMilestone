@@ -25,6 +25,7 @@ Vamsi Vikash Ankam(vankam)
 ![image](https://github.com/rkvardhi/DevOps_DeploymentMilestone/blob/master/Screenshots/Inventory.jpeg)
 
 ## Jenkins Jobs(to deploy application to EC2 Instances):
+* Configuration for Jenkins Jobs can be found [here](https://github.com/rkvardhi/DevOps_DeploymentMilestone/tree/master/Jenkins_jobs).
 ![image](https://github.com/rkvardhi/DevOps_DeploymentMilestone/blob/master/Screenshots/JenkinsJob1.png)
 ![image](https://github.com/rkvardhi/DevOps_DeploymentMilestone/blob/master/Screenshots/CanaryRelease.jpeg)
 
