@@ -8,7 +8,7 @@ var app = express()
 var client = redis.createClient(6379, '52.10.15.127', {})
 
 ///////////// WEB ROUTES
-
+client.set('monitor_canary','false');
 
 // HTTP SERVER
  var server = app.listen(3001, function () {
