@@ -65,6 +65,7 @@ function memoryLoad()
     		console.log('Message sent: ' + info.response);
 
 		});*/
+		console.log('Alert raised');
 
 	}
 	return memLoad;
@@ -119,7 +120,7 @@ function cpuAverage()
     		console.log('Message sent: ' + info.response);
 
 		});*/
-
+		console.log('Alert raised');
 	}
 	return cpuAvg;
 }

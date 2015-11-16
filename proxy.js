@@ -24,11 +24,6 @@ client.lpush('serverqueue',string1);
 client.lpush('serverqueue',string1);
 client.lpush('serverqueue',string2);
 
-client.lrange('serverqueue',0,-1, function (err, value) {
-	console.log(value);
-})
-
-
 app.get('/*',function(req,res) {
 	client.get('monitor_canary', function(err, value) {
 		if (value == 'true') {
