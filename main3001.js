@@ -52,16 +52,16 @@ function memoryLoad()
 	console.log( 'Used mem : ' + total + 'Free mem : ' + freemem);
 	var memLoad = 100*(total-freemem)/total;
 	console.log('MemLoad : ' + memLoad);
-	if (memLoad > 80) {
+	if (memLoad > 35) {
 		//TO DO : Send email and update a flag
 		// send mail with defined transport object
-		/*transporter.sendMail(mailOptions, function(error, info){
+		transporter.sendMail(mailOptions, function(error, info){
     			if(error){
         			return console.log(error);
     			}
     		console.log('Message sent: ' + info.response);
 
-		});*/
+		});
 		client.set('monitor_canary','true');
 		console.log('Alert raised');
 	}
@@ -107,17 +107,17 @@ function cpuAverage()
 	//Calculate the average percentage CPU usage
 	var cpuAvg = 100*(totalDifference-idleDifference)/totalDifference;
 	console.log('CPU Average : ' + cpuAvg);
-	if (cpuAvg > 80) {
+	if (cpuAvg > 35) {
 		//TO DO : Send email and update a flag
 		
 		// send mail with defined transport object
-		/*transporter.sendMail(mailOptions, function(error, info){
+		transporter.sendMail(mailOptions, function(error, info){
     			if(error){
         			return console.log(error);
     			}
     		console.log('Message sent: ' + info.response);
 
-		});*/
+		});
 		client.set('monitor_canary','true');
 		console.log('Alert raised');
 	}
