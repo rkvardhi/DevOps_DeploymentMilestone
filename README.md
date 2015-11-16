@@ -10,7 +10,7 @@ Summary of things that are achieved in this milestone:
 * Monitored the production for two metrics (CPU and memory). Raised alerts if metrics are beyond threshold.
 * Created a seperate job for canary release. Routed about 33% traffic to the new canary release using proxy.
 
-####Team Members:
+## Team Members:
 ```
 Nikhil Chinthapallee(nchinth)
 Rishi Vardhineni(rkvardhi)
@@ -88,3 +88,28 @@ var total = os.totalmem();
 ```
 * Email:
 ![image](https://github.com/rkvardhi/DevOps_DeploymentMilestone/blob/master/Screenshots/ProductionAlert.JPG)
+
+
+## Canary Release:
+* Created a seperate Jenkins Job for Canary Release.
+![image](https://github.com/rkvardhi/DevOps_DeploymentMilestone/blob/master/Screenshots/CanaryRelease.jpeg)
+* Routin 33% traffic to Canary. And if any monitoring alert is raised we are blocking up the canary instance.
+```
+client.lpush('serverqueue',string1);
+client.lpush('serverqueue',string1);
+client.lpush('serverqueue',string2);
+```
+```
+app.get('/*',function(req,res) {
+	client.get('monitor_canary', function(err, value) {
+		if (value == 'true') {
+			console.log('Removed canary server');
+			client.lrem('serverqueue', 1, string2);
+		}
+	})
+	client.rpoplpush('serverqueue','serverqueue', function(err, value) {
+		console.log(value);
+		proxy.web(req, res, { target: value });
+		});
+})
+```
