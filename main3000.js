@@ -157,43 +157,7 @@ app.use(function(req, res, next)
 client.set("key", "value");
 client.get("key", function(err,value){ console.log(value)});
 
- app.post('/upload',[ multer({ dest: './uploads/'}), function(req, res){
-
-    console.log(req.body) // form fields
-    console.log(req.files) // form files
-
-    if( req.files.image )
-    {
- 	   fs.readFile( req.files.image.path, function (err, data) {
- 	  		if (err) throw err;
- 	  		var img = new Buffer(data).toString('base64');
-			client.lpush('imgqueue', img);
- 	  		console.log("Image uploaded successfully");
- 		});
- 	}
-
-    res.status(204).end()
- }]);
-
- app.get('/meow', function(req, res) {
- 	{
-		console.log("Meow invoked");
- 		res.writeHead(200, {'content-type':'text/html'});
-
-		//Remove the recently pushed element from the imgqueue
-		client.rpop('imgqueue', function(err, imagedata){
-			res.write("<h1>\n<img src='data:my_pic.jpg;base64,"+imagedata+"'/>");
-			res.end();
-			});
-		
- 	}
- })
-
-
-
-
-
-
+ 
 app.get('/', function(req, res) {
   res.send('From port 3000\nhello world')
 })
