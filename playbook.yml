@@ -11,3 +11,16 @@
         - git
         - nodejs
         - npm
+
+- hosts: node1
+  tasks:
+    - name: install the rpm from a remote repo
+      yum: name=http://dl.fedoraproject.org/pub/epel/7/x86_64/e/epel-release-7-5.noarch.rpm state=present
+      sudo: yes
+    - name: Install yum packages
+      yum: name={{item}} state=latest enablerepo=epel
+      sudo: yes
+      with_items:
+        - git
+        - nodejs
+        - npm
