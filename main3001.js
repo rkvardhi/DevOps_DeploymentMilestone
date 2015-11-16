@@ -195,7 +195,7 @@ client.get("key", function(err,value){ console.log(value)});
 
 
 app.get('/', function(req, res) {
-  res.send('From port 3001\nhello world')
+  res.send('From Canary instance: Hello world')
 })
 
 
