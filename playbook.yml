@@ -11,6 +11,7 @@
         - git
         - nodejs
         - npm
+        - redis
 
 - hosts: node1
   tasks:
@@ -24,3 +25,4 @@
         - git
         - nodejs
         - npm
+        - redis

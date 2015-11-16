@@ -2,6 +2,7 @@ var redis = require('redis')
 var multer  = require('multer')
 var express = require('express')
 var fs      = require('fs')
+var os = require('os')
 var app = express()
 // REDIS
 var client = redis.createClient(6379, '127.0.0.1', {})
@@ -17,11 +18,7 @@ var client = redis.createClient(6379, '127.0.0.1', {})
    console.log('Example app listening at http://%s:%s', host, port)
  })
 
-var sio = require('socket.io')
-  , http = require('http')
-  , request = require('request')
-  , os = require('os')
-  ;
+
 
 
 //Sending Mail
@@ -61,13 +58,13 @@ function memoryLoad()
 	if (memLoad > 45) {
 		//TO DO : Send email and update a flag
 		// send mail with defined transport object
-		transporter.sendMail(mailOptions, function(error, info){
+		/*transporter.sendMail(mailOptions, function(error, info){
     			if(error){
         			return console.log(error);
     			}
     		console.log('Message sent: ' + info.response);
 
-		});
+		});*/
 
 	}
 	return memLoad;
@@ -115,13 +112,13 @@ function cpuAverage()
 	if (cpuAvg > 45) {
 		//TO DO : Send email and update a flag
 		// send mail with defined transport object
-		transporter.sendMail(mailOptions, function(error, info){
+		/*transporter.sendMail(mailOptions, function(error, info){
     			if(error){
         			return console.log(error);
     			}
     		console.log('Message sent: ' + info.response);
 
-		});
+		});*/
 
 	}
 	return cpuAvg;

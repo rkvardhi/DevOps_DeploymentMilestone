@@ -12,7 +12,7 @@ var http = require('http')
 var proxy = httpProxy.createProxyServer({});
 
 var string1 = 'http://127.0.0.1:3000';
-var string2 = 'http://127.0.0.1:3001';
+var string2 = 'http://52.34.48.84:3001';
 
 
 client.del('serverqueue');
