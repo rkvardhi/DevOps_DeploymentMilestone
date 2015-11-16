@@ -1,0 +1,45 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<project>
+  <actions/>
+  <description></description>
+  <keepDependencies>false</keepDependencies>
+  <properties/>
+  <scm class="hudson.plugins.git.GitSCM" plugin="git@2.4.0">
+    <configVersion>2</configVersion>
+    <userRemoteConfigs>
+      <hudson.plugins.git.UserRemoteConfig>
+        <url>https://github.com/rkvardhi/DevOps_DeploymentMilestone</url>
+        <credentialsId>70cd5e06-96b7-4aff-a20a-71e47b20d4ea</credentialsId>
+      </hudson.plugins.git.UserRemoteConfig>
+    </userRemoteConfigs>
+    <branches>
+      <hudson.plugins.git.BranchSpec>
+        <name>*/master</name>
+      </hudson.plugins.git.BranchSpec>
+    </branches>
+    <doGenerateSubmoduleConfigurations>false</doGenerateSubmoduleConfigurations>
+    <submoduleCfg class="list"/>
+    <extensions/>
+  </scm>
+  <canRoam>true</canRoam>
+  <disabled>false</disabled>
+  <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
+  <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
+  <triggers/>
+  <concurrentBuild>false</concurrentBuild>
+  <builders>
+    <hudson.tasks.Shell>
+      <command>npm install
+</command>
+    </hudson.tasks.Shell>
+    <hudson.tasks.Shell>
+      <command>sudo ssh -t -t -i &quot;/home/nikhil/Devops/Project_Milestone/DevOps_DeploymentMilestone/nchinth.pem&quot; ec2-user@52.34.48.84 &apos;cd /home/ec2-user ; sudo rm -r -f DevOps_DeploymentMilestone ; sudo git clone https://github.com/rkvardhi/DevOps_DeploymentMilestone ; cd DevOps_DeploymentMilestone ; sudo npm install; &apos;
+sudo ssh -t -t -i &quot;/home/nikhil/Devops/Project_Milestone/DevOps_DeploymentMilestone/nchinth.pem&quot; ec2-user@52.34.48.84 &quot;cd /home/ec2-user/DevOps_DeploymentMilestone; sudo node main3001.js&quot;
+
+
+</command>
+    </hudson.tasks.Shell>
+  </builders>
+  <publishers/>
+  <buildWrappers/>
+</project>
