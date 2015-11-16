@@ -93,7 +93,7 @@ var total = os.totalmem();
 ## Canary Release:
 * Created a seperate Jenkins Job for Canary Release.
 ![image](https://github.com/rkvardhi/DevOps_DeploymentMilestone/blob/master/Screenshots/CanaryRelease.jpeg)
-* Routin 33% traffic to Canary. And if any monitoring alert is raised we are blocking up the canary instance.
+* Routin 33% traffic to Canary. And if any monitoring alert(checking the flag 'monitory_canary') is raised we are blocking up the canary instance.
 ```
 client.lpush('serverqueue',string1);
 client.lpush('serverqueue',string1);
@@ -116,4 +116,4 @@ app.get('/*',function(req,res) {
 
 ## Screencast:
 Please right click and save the gif to your system for better view .
-Here is link to ![gif](https://github.com/rkvardhi/DevOps_DeploymentMilestone/blob/master/Screenshots/Deployment3.gif)
+Below is the gif ![gif](https://github.com/rkvardhi/DevOps_DeploymentMilestone/blob/master/Screenshots/Deployment3.gif)
